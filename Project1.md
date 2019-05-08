@@ -55,10 +55,17 @@ Main-Class: test.ant.HelloAnt
 ```
 java -jar /jar/file/path/test.jar
 ```
-## 生成jar包
+### 生成jar包
 * 进入我们临时建立的class文件的更目录，即```project/build/```
 * 执行命令
   ```
   jar -c -v -file=test.jar --main-class=test.ant.HelloAnt test
   ```
-  --main-class的内容会写入manifest文件
+  --main-class的内容会写入manifest文件。
+  jar的参数还有很多，请参考其帮助文档。
+
+### 解压jar包
+执行命令
+```
+jar -xvf your-file-name.jar
+```
