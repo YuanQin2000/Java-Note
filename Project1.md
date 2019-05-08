@@ -10,7 +10,7 @@ public class HelloAnt {
   }
 }
 ```
-假设有src目录为项目源文件的根目录，那么HelloAnt.java需要存放与目录
+假设有src目录为项目源文件的根目录，那么HelloAnt.java需要存放于目录
 ```
 src/test/ant/
 ```
@@ -23,7 +23,11 @@ javac HelloAnt.java
 ```
 java test.ant.HelloAnt
 ```
-显然，发布软件时并不希望字节码文件和源码文件混在一起，因此需要将所有的字节码按照相同的目录名和结构拷贝出来，假如我们在src位于project目录下，于是我们在project目录下创建build目录，将class字节码文件和其对应的目录全部拷贝到build路径下，于是我们得到以下目录树
+显然，发布软件时并不希望字节码文件和源码文件混在一起，可以使用javac的参数指定编译输出的目标目录：
+```
+javac src/test/ant/HelloAnt.java -d build
+```
+于是我们得到以下目录树
 ```
 project/
   src/
