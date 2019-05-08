@@ -56,7 +56,7 @@ Main-Class: test.ant.HelloAnt
 java -jar /jar/file/path/test.jar
 ```
 ### 生成jar包
-* 进入我们临时建立的class文件的更目录，即```project/build/```
+* 进入我们临时建立的class文件的根目录，即```project/build/```
 * 执行命令
   ```
   jar -c -v -file=test.jar --main-class=test.ant.HelloAnt test
