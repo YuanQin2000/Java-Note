@@ -12,11 +12,11 @@ Ant工具的设计思路和make几乎是相同的，如果熟悉Makefile，使�
         ant/
           HelloAnt.java
   ```
-* XML文件包括两部分内容，第一部分为变量的定义(可选的)，第二部分为执行目标的描述，执行目标可以是多个，并且可以有依赖关系，比如build目标依赖于compile目标，目标的名字可以是任意定义。XML可以描述默认执行的目标，也可以在命令行执行ant时指定目标，这些特性和make是相同的。
-* XML文件不指定Java源文件的依赖关系，仅需指定源文件目录和编译后输出的目录。
+* XML文件包括两部分内容，第一部分为属性的定义(可选的)，第二部分为执行目标的描述，执行目标可以是多个，并且可以有依赖关系，比如build目标依赖于compile目标，目标的名字可以是任意定义。XML可以描述默认执行的目标，也可以在命令行执行ant时指定目标，这些特性和make是相同的。
+* Ant内部实现了对源文件的依赖分析，因此在XML文件中不需要指定Java源文件的依赖关系，仅指定源文件目录和编译后输出的目录。
 * 使用Ant制作jar包时，需要设置manifest的各种属性，如Main-Class
 
-下面是一个基本(未指定import package的java class path)的Ant XML文件
+下面是一个基本的Ant XML文件
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="MyFirstAnt" default="build" basedir=".">
@@ -48,6 +48,7 @@ Ant工具的设计思路和make几乎是相同的，如果熟悉Makefile，使�
 
 </project>
 ```
+Ant工具有很多高级功能可以在XML文件中描述，如子工程构建，属性定义文件等。
 在project目录下执行命令
 ```
 ant build
