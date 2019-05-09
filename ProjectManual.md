@@ -1,4 +1,4 @@
-# Java Project 1
+# Java Project - Manual
 ## 包与目录
 包必须与源代码文件存放的路径相匹配：如有下列HelloAnt.java文件
 ```
