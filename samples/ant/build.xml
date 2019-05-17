@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MyFirstAnt" default="build" basedir=".">
+
+    <property name="src-dir" value="src"/>
+    <property name="dest-dir" value="build"/>
+    <property name="lib-dir" value="lib"/>
+    <property name="target-jar" value="hello-ant.jar"/>
+
+    <fileset id="lib-jar-files" dir="${lib-dir}">
+        <include name="**/*.jar"/>
+    </fileset>
+
+    <path id="lib-class-path">
+        <fileset refid="lib-jar-files">
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${dest-dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src-dir}" destdir="${dest-dir}" classpathref="lib-class-path" includeantruntime="false"/>
+    </target>
+
+    <target name="build" depends="compile">
+        <jar jarfile="${target-jar}" basedir="${dest-dir}">
+            <manifest>
+                <attribute name="Main-Class" value="test.ant.HelloAnt" />
+            </manifest>
+            <zipgroupfileset refid="lib-jar-files"/>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="${dest-dir}" />
+        <delete file="${target-jar}" />
+    </target>
+
+</project>
