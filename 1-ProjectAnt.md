@@ -1,6 +1,5 @@
 # 1. Java Project - Ant
-从手动构建工程(jar包)的过程来看，即使不考虑增量编译的问题，也是非常繁琐的操作。虽然可以使用make或脚本工具来构建Java工程，但更好的方法是使用Java自己的工具来构建项目，按照出现的时间先后顺序，使用最广泛的三种工具是Ant, Maven和Gradle。这些工具相对于make工程构建方法而言更简单、智能。
-## 使用Ant构建工程
+## Ant基本功能
 Ant是Apache基金会的一个项目: [https://ant.apache.org/](https://ant.apache.org/)
 Ant工具的设计思路和make几乎是相同的，如果熟悉Makefile，使用Ant是非常简单的事情。
 
@@ -56,7 +55,7 @@ ant build
 ```
 则可以自动生成hello-ant.jar包.
 
-## 使用其他Java程序库
+## 引用第三方Java库
 使用其他Java程序库需要两个配置：
 * 在某个目录下存放要使用的Java库文件，通常为jar文件；
 * 指定编译时的class path指向上述的Java库文件。

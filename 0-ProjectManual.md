@@ -1,4 +1,4 @@
-# Java Project - Manual
+# 0. Java Project - Manual
 ## 包与目录
 包必须与源代码文件存放的路径相匹配：如有下列HelloAnt.java文件
 ```
@@ -63,7 +63,7 @@ java -jar /jar/file/path/test.jar
 * 进入我们临时建立的class文件的根目录，即```project/build/```
 * 执行命令
   ```
-  jar -c -v -file=test.jar --main-class=test.ant.HelloAnt test
+  jar -c -v --file=test.jar --main-class=test.ant.HelloAnt test
   ```
   --main-class的内容会写入manifest文件。
   jar的参数还有很多，请参考其帮助文档。
@@ -73,3 +73,26 @@ java -jar /jar/file/path/test.jar
 ```
 jar -xvf your-file-name.jar
 ```
+### 引用第三方Java库
+* 在编译源文件时指定-cp(-classpath)
+  ```
+  javac -cp /class/or/jar/repository /path/to/source.java -d build-dir
+  ```
+* 在运行时指定-cp
+  ```
+  java -cp /class/or/jar/repository:. path.to.source
+  ```
+  repository可以是三种类型：具体的jar文件，class文件目录，目录下所有的jar文件(/x/y/z/*)，多项值使用冒号:分割。
+
+**当运行的程序是jar文件时，指定class path是无效的**。需要在其manifest文件中指定：
+```
+Class-Path: /path/to/classes/*.class	<OR/AND>
+Class-Path: /path/to/jarfiles/reference1.jar
+```
+但jar命令并不支持--class-path参数，因此只能通过指定manifest文件的方式生成jar包：
+```
+jar -m=/path/to/manifest -c -v --file=target-name.jar build-target-class-dir
+```
+另外一种制作jar包的方式是将要引用的jar文件全部解压，取其包相同的文件夹，放入与本程序编译好的class目录同一级，然后将他们重新打包制作jar，这种情况下就不需要在manifest文件中指定class path，因为引用的class文件在正确的相对路径下。
+## 总结
+可以看出，通过手动执行javac, jar来编译构建工程是一件相当繁琐的事情，在引入第三库、项目工程结构复杂的情况下，手工构建工程将是不可能的事情。而且，我们还未考虑增量编译之类的性能问题。显然，Java需要一个自动的工程构建工具。于是，一个设计思想完全遵从Makefile的工具Ant便产生了。
