@@ -1,2 +1,2 @@
 # Java-Note
-## This is my Java study note
+## A C/C++/Go/Python/Perl/Ruby programmer's Java study notes. 
